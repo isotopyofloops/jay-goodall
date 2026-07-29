@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jane R. Goodall</title>
+<style>
+  :root {
+    --bg: #f7f4ee;
+    --bg-alt: #eee9df;
+    --text: #2c2a26;
+    --text-muted: #6b6560;
+    --accent: #b8892e;
+    --accent-dark: #96701f;
+    --heading: #1c1b18;
+    --border: #d6cfc3;
+    --card-bg: #ffffff;
+    --hero-bg: #1c1e24;
+    --hero-text: #e8e4dc;
+    --hero-accent: #d4a43a;
+    --link: #7a5e1a;
+    --link-hover: #b8892e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1915;
+      --bg-alt: #22211b;
+      --text: #d4d0c8;
+      --text-muted: #9a9489;
+      --accent: #d4a43a;
+      --accent-dark: #e0b44e;
+      --heading: #ede9e0;
+      --border: #3a372e;
+      --card-bg: #26251f;
+      --hero-bg: #111014;
+      --hero-text: #e8e4dc;
+      --hero-accent: #d4a43a;
+      --link: #d4a43a;
+      --link-hover: #e8c06a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1a1915;
+    --bg-alt: #22211b;
+    --text: #d4d0c8;
+    --text-muted: #9a9489;
+    --accent: #d4a43a;
+    --accent-dark: #e0b44e;
+    --heading: #ede9e0;
+    --border: #3a372e;
+    --card-bg: #26251f;
+    --hero-bg: #111014;
+    --hero-text: #e8e4dc;
+    --hero-accent: #d4a43a;
+    --link: #d4a43a;
+    --link-hover: #e8c06a;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f7f4ee;
+    --bg-alt: #eee9df;
+    --text: #2c2a26;
+    --text-muted: #6b6560;
+    --accent: #b8892e;
+    --accent-dark: #96701f;
+    --heading: #1c1b18;
+    --border: #d6cfc3;
+    --card-bg: #ffffff;
+    --hero-bg: #1c1e24;
+    --hero-text: #e8e4dc;
+    --hero-accent: #d4a43a;
+    --link: #7a5e1a;
+    --link-hover: #b8892e;
+  }
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--hero-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0.7rem 1rem;
+    max-width: 60rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--hero-text);
+    opacity: 0.7;
+    border: none;
+    transition: opacity 0.2s;
+  }
+
+  nav a:hover {
+    opacity: 1;
+    color: var(--hero-accent);
+    border: none;
+  }
+
+  /* --- HERO --- */
+  .hero {
+    background: var(--hero-bg);
+    color: var(--hero-text);
+    padding: 4rem 2rem 3.5rem;
+  }
+
+  .hero-inner {
+    max-width: 56rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .hero h1 {
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero .subtitle {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--hero-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero .intro {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    opacity: 0.85;
+    max-width: 38rem;
+  }
+
+  .hero-cover {
+    width: 200px;
+    box-shadow: 4px 6px 20px rgba(0,0,0,0.4);
+  }
+
+  @media (max-width: 700px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero h1 { font-size: 2rem; }
+    .hero-cover { width: 160px; }
+  }
+
+  /* --- SECTIONS --- */
+  section {
+    padding: 3.5rem 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  section + section {
+    border-top: 1px solid var(--border);
+  }
+
+  h2 {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--heading);
+    margin-bottom: 0.3rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  /* --- BOOKS --- */
+  .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+
+  .book {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .book-no-cover {
+    grid-template-columns: 1fr;
+  }
+
+  .book img {
+    width: 100px;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
+  }
+
+  .book-info h3 {
+    font-size: 1.08rem;
+    font-style: italic;
+  }
+
+  .book-info .meta {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .book-info .description {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 500px) {
+    .book {
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+    }
+    .book img { width: 80px; }
+  }
+
+  /* --- FICTION --- */
+  .fiction-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fiction-card {
+    text-align: center;
+  }
+
+  .fiction-card img {
+    width: 100%;
+    max-width: 140px;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
+    margin-bottom: 0.6rem;
+  }
+
+  .fiction-card h3 {
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  .fiction-card .meta {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 500px) {
+    .fiction-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+  /* --- RESEARCH --- */
+  .research-block {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--accent);
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .research-block h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .research-block p {
+    font-size: 0.92rem;
+    margin-bottom: 0;
+    color: var(--text-muted);
+  }
+
+  /* --- JOURNALISM --- */
+  .journalism p {
+    font-size: 0.95rem;
+  }
+
+  /* --- LINKS --- */
+  .links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .links-list li {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.88rem;
+  }
+
+  .links-list .label {
+    display: inline-block;
+    width: 6rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#fiction">Fiction</a></li>
+    <li><a href="#journalism">Journalism</a></li>
+    <li><a href="#links">Links</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="subtitle">Emeritus Professor &middot; Western Sydney University</div>
+      <h1>Jane R. Goodall</h1>
+      <p class="intro">
+        Cultural historian specialising in the dynamics of cultural change.
+        Author of seven scholarly books spanning performance, science, propaganda,
+        and politics, as well as three detective novels. Currently researching
+        natural language experiments with large language models.
+      </p>
+    </div>
+    <img class="hero-cover" src="images/image3.jpeg" alt="Artaud and the Gnostic Drama, book cover">
+  </div>
+</header>
+
+<section id="research">
+  <h2>Current Research</h2>
+  <div class="research-block">
+    <h3>Natural Language Experiments with LLMs</h3>
+    <p>Extended dialogue experiments exploring language, cognition, and cultural dynamics through large language model interaction.</p>
+  </div>
+  <p>
+    Goodall's research has centred on the cultural history of science and performance,
+    with particular attention to how ideas mutate as they cross disciplinary
+    boundaries. Her recent work extends this into the territory of human–AI
+    collaboration and the dynamics of machine-mediated language.
+  </p>
+  <p>
+    She is affiliated with the
+    <a href="https://www.westernsydney.edu.au/writing-and-society">Writing and Society Research Centre</a>
+    at Western Sydney University.
+  </p>
+</section>
+
+<section id="books">
+  <h2>Scholarly Books</h2>
+  <div class="book-list">
+
+    <div class="book book-no-cover">
+      <div class="book-info">
+        <h3>Propaganda as Dramatic Narrative</h3>
+        <div class="meta">Palgrave Macmillan, 2026</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/image1_web.jpg" alt="The Politics of the Common Good cover">
+      <div class="book-info">
+        <h3>The Politics of the Common Good</h3>
+        <div class="meta">NewSouth Publishing, 2019</div>
+        <p class="description">Dispossession in Australia.</p>
+      </div>
+    </div>
+
+    <div class="book book-no-cover">
+      <div class="book-info">
+        <h3>Trauma and Public Memory</h3>
+        <div class="meta">Palgrave Macmillan, 2015 &middot; Edited with Christopher Lee</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/image4.jpeg" alt="Frankenstein's Science cover">
+      <div class="book-info">
+        <h3>Frankenstein's Science</h3>
+        <div class="meta">Routledge, 2008 &middot; Edited with Christa Knellwolf</div>
+        <p class="description">Experimentation and discovery in Romantic culture, 1780–1830.</p>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/image2.jpeg" alt="Stage Presence cover">
+      <div class="book-info">
+        <h3>Stage Presence</h3>
+        <div class="meta">Routledge, 2007</div>
+      </div>
+    </div>
+
+    <div class="book book-no-cover">
+      <div class="book-info">
+        <h3>Performance and Evolution in the Age of Darwin</h3>
+        <div class="meta">Routledge, 2002</div>
+        <p class="description">Out of the natural order.</p>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/image3.jpeg" alt="Artaud and the Gnostic Drama cover">
+      <div class="book-info">
+        <h3>Artaud and the Gnostic Drama</h3>
+        <div class="meta">Oxford University Press, 1994 &middot; New edition: Scarlett Imprint, 2020</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="fiction">
+  <h2>Detective Fiction</h2>
+  <p style="margin-bottom: 1.5rem;">
+    The Briony Williams series — three crime novels set in Australia, published by Hachette.
+  </p>
+  <div class="fiction-grid">
+    <div class="fiction-card">
+      <img src="images/image5.jpeg" alt="The Walker cover">
+      <h3>The Walker</h3>
+      <div class="meta">2004</div>
+    </div>
+    <div class="fiction-card">
+      <img src="images/image6.jpeg" alt="The Visitor cover">
+      <h3>The Visitor</h3>
+      <div class="meta">2006</div>
+    </div>
+    <div class="fiction-card">
+      <img src="images/image7.jpeg" alt="The Calling cover">
+      <h3>The Calling</h3>
+      <div class="meta">2007</div>
+    </div>
+  </div>
+</section>
+
+<section id="journalism" class="journalism">
+  <h2>Journalism</h2>
+  <p>
+    Regular contributor to <a href="https://insidestory.org.au">Inside Story</a>,
+    an online magazine of politics, culture, and public policy published from Australia.
+  </p>
+</section>
+
+<section id="links">
+  <h2>Links</h2>
+  <ul class="links-list">
+    <li><span class="label">Wikipedia</span> <a href="https://en.wikipedia.org/wiki/Jane_R._Goodall">Jane R. Goodall</a></li>
+    <li><span class="label">centaurXiv</span> <a href="https://centaurxiv.org/papers/centaurxiv-2026-032">centaurxiv-2026-032</a></li>
+  </ul>
+</section>
+
+<footer>
+  &copy; Jane R. Goodall
+</footer>
+
+</body>
+</html>
